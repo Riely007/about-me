@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riely Chen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root,
+    [data-theme="light"] {
+      --ink: #1a1a18;
+      --muted: #6b6b63;
+      --accent: #c87941;
+      --bg: #f7f5f0;
+      --link: #3a5a8c;
+      --rule: #e0ddd6;
+      --toggle-bg: #e4e2dc;
+      --toggle-hover: #d5d2ca;
+    }
+
+    [data-theme="dark"] {
+      --ink: #e8e6e0;
+      --muted: #888880;
+      --accent: #d4895a;
+      --bg: rgb(26, 26, 26);
+      --link: #7ba3cc;
+      --rule: #2a2a27;
+      --toggle-bg: #252523;
+      --toggle-hover: #2f2f2c;
+    }
+
+    [data-theme="dark"] body {
+      background-color: rgb(26, 26, 26);
+      border-bottom-color: lab(100 0 0 / 0.1);
+      border-bottom-style: solid;
+      border-bottom-width: 0px;
+      border-image-outset: 0;
+      border-image-repeat: stretch;
+      border-image-slice: 100%;
+      border-image-source: none;
+      border-image-width: 1;
+      border-left-color: lab(100 0 0 / 0.1);
+      border-left-style: solid;
+      border-left-width: 0px;
+      border-right-color: lab(100 0 0 / 0.1);
+      border-right-style: solid;
+      border-right-width: 0px;
+      border-top-color: lab(100 0 0 / 0.1);
+      border-top-style: solid;
+      border-top-width: 0px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 17px; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'STIX Two Text', serif;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: -0.02em;
+      min-height: 100vh;
+      padding: 0 1.5rem;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 0 6rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+    }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Theme toggle ── */
+    .theme-toggle {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: var(--toggle-bg);
+      border: none;
+      border-radius: 99px;
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'STIX Two Text', serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--muted);
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .theme-toggle:hover {
+      background: var(--toggle-hover);
+      color: var(--ink);
+    }
+
+    .theme-toggle svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .icon-sun  { display: none; }
+    .icon-moon { display: block; }
+    [data-theme="dark"] .icon-sun  { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+
+    /* ── Typography ── */
+    h1 {
+      font-size: 1.55rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.6rem;
+      color: var(--ink);
+    }
+
+    p {
+      margin-bottom: 1.1rem;
+      color: var(--ink);
+    }
+
+    .section { margin-top: 2.4rem; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+    }
+
+    ul { list-style: none; padding-left: 1.2rem; }
+
+    ul li {
+      margin-bottom: 0;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    ul li::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--ink);
+      flex-shrink: 0;
+    }
+
+    a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--muted);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--ink);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 2.6rem 0;
+      transition: border-color 0.25s;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-decoration-color: transparent;
+    }
+
+    .footer a:hover {
+      color: var(--ink);
+      text-decoration-color: var(--muted);
+    }
+
+    .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 0.5rem;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    em { font-style: italic; font-weight: 400; }
+  </style>
+</head>
+<body>
+
+  <button class="theme-toggle" id="toggle" aria-label="Toggle theme">
+    <!-- Moon: shown in light mode -->
+    <svg class="icon-moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+    </svg>
+    <!-- Sun: shown in dark mode -->
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="5" fill="currentColor"/>
+      <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span id="toggle-label">Dark</span>
+  </button>
+
+  <div class="wrap">
+    <h1>Riely Chen</h1>
+
+    <p>
+      I'm a generalist and ecosystem developer. I work at
+      <a href="https://geodelabs.xyz">Geode Labs</a> leading ecosystem development
+      and writing about global Ethereum adoption at
+      <a href="#">Local Ethereum</a>.
+      Previously, I worked at <a href="https://ethereum.foundation">Ethereum Foundation</a>
+      on ecosystem development.
+    </p>
+
+    <p>
+      I've been connecting the western and eastern worlds for a decade 
+      building bridges between communities, institutions, and the people
+      who make open technology move.
+    </p>
+
+    <p>
+      My life's work is to introduce talented people to the latest technology,
+      and more recently, <em>Ethereum</em>.
+    </p>
+
+
+    <div class="section">
+      <div class="section-label">Things I believe</div>
+      <ul>
+        <li>Education</li>
+        <li>Freedom</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Some of my favorite writing</div>
+      <ul>
+        <li><a href="https://www.cs.virginia.edu/~robins/YouAndYourResearch.html">You and Your Research</a></li>
+      </ul>
+    </div>
+
+
+    <div class="footer">
+      <a href="https://x.com">Twitter / X</a>
+      <a href="https://github.com">GitHub</a>
+      <a href="mailto:riely@geodelabs.xyz">Email</a>
+      <a href="#">Writing</a>
+    </div>
+  </div>
+
+  <script>
+    const html = document.documentElement;
+    const btn = document.getElementById('toggle');
+    const label = document.getElementById('toggle-label');
+
+    // Respect system preference on first load, then persist choice
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = saved || (prefersDark ? 'dark' : 'light');
+    html.setAttribute('data-theme', initial);
+    label.textContent = initial === 'dark' ? 'Light' : 'Dark';
+
+    btn.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      label.textContent = next === 'dark' ? 'Light' : 'Dark';
+      localStorage.setItem('theme', next);
+    });
+  </script>
+</body>
+</html>
