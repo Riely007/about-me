@@ -309,7 +309,7 @@
       <div class="footer-links">
         <a href="https://x.com/RielyChen">Twitter / X</a>
         <a href="https://github.com/Riely007">GitHub</a>
-        <a href="mailto:rielychen@gmail.com">Email</a>
+        <a href="#" id="email-copy" aria-label="Copy email address">Email</a>
         <a href="https://localethereum.substack.com">Writing</a>
       </div>
       <div class="footer-right">
@@ -340,6 +340,16 @@
       html.setAttribute('data-theme', next);
       label.textContent = next === 'dark' ? 'Light' : 'Dark';
       localStorage.setItem('theme', next);
+    });
+
+    // Email copy
+    document.getElementById('email-copy').addEventListener('click', function(e) {
+      e.preventDefault();
+      navigator.clipboard.writeText('rielychen@gmail.com').then(() => {
+        const orig = this.textContent;
+        this.textContent = 'Copied!';
+        setTimeout(() => { this.textContent = orig; }, 1500);
+      });
     });
 
     // Clock
