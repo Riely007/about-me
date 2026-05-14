@@ -117,22 +117,21 @@
 
     ul li {
       color: var(--ink);
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      padding-left: 0.25rem;
+      position: relative;
+      padding-left: 1rem;
       margin-bottom: 0.25rem;
     }
 
     ul li::before {
       content: '';
-      display: inline-block;
+      display: block;
       width: 3px;
       height: 3px;
       border-radius: 50%;
       background: var(--muted);
-      flex-shrink: 0;
-      margin-top: 0.7em;
+      position: absolute;
+      left: 0.25rem;
+      top: 0.68em;
     }
 
     a {
@@ -193,6 +192,18 @@
     }
 
     em { font-style: italic; }
+
+    @media (max-width: 600px) {
+      .wrap {
+        padding: 64px 20px 48px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+      }
+    }
   </style>
 </head>
 <body>
