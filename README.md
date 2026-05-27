@@ -1,4 +1,4 @@
-# Riely Chen — about-me
+# Riely Chen: about-me
 
 Personal website for [riely.xyz](https://riely.xyz).
 
